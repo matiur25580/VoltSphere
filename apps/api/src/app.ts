@@ -17,7 +17,13 @@ app.use(cors({ origin: env.CORS_ORIGIN, credentials: true }));
 app.use(compression());
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
-app.use(pinoHttp({ redact: ['req.headers.authorization', 'req.headers.cookie'] }));
+
+// pino-http exposes a callable CommonJS export; normalize its type for NodeNext ESM.
+const createHttpLogger = pinoHttp as unknown as (options: {
+  redact: string[];
+}) => express.RequestHandler;
+app.use(createHttpLogger({ redact: ['req.headers.authorization', 'req.headers.cookie'] }));
+
 app.use(
   '/api',
   rateLimit({
