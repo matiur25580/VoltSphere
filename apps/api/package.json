@@ -18,7 +18,7 @@
     "helmet": "^8.0.0",
     "mongoose": "^8.9.3",
     "pino-http": "^10.3.0",
-    "zod": "^3.24.1"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/compression": "^1.7.5",
@@ -28,6 +28,6 @@
     "@types/supertest": "^6.0.2",
     "supertest": "^7.0.0",
     "tsx": "^4.19.2",
-    "vitest": "^2.1.8"
+    "vitest": "^4.1.12"
   }
 }
